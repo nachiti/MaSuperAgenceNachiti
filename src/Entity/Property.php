@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PropertyRepository")
@@ -11,8 +12,8 @@ use Cocur\Slugify\Slugify;
 class Property
 {
     const HEAT = [
-        0 => 'electric',
-        1 => 'gaz'
+        0 => 'Electrique',
+        1 => 'Gaz'
     ];
 
 
@@ -35,6 +36,7 @@ class Property
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Range(min=10, max=400)
      */
     private $surface;
 
@@ -75,6 +77,7 @@ class Property
     private $address;
 
     /**
+     * @Assert\Regex("/^[0-9]{5}$/")
      * @ORM\Column(type="string", length=255)
      */
     private $postal_code;
@@ -203,6 +206,10 @@ class Property
         $this->heat = $heat;
 
         return $this;
+    }
+    public function getHeatType(): string
+    {
+        return  self::HEAT[$this->heat];
     }
 
     public function getString(): ?string
