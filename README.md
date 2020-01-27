@@ -1,8 +1,8 @@
 Blog symfony
  Faical Nachiti
   fonctionalite:
-        crud sur les Biens
-        authentification
+        -crud sur les Biens
+        -authentification
 
 
 -Connecter vers :  http://localhost:8000/admin
